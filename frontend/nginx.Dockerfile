@@ -7,6 +7,8 @@ FROM node:18.14.0-buster-slim as compilacion
 LABEL developer="jesus guzman" \
       email="susguzman@gmail.com"
 
+ENV REACT_APP_BACKEND_BASE_URL=http://localhost:3800
+
 # Copy app
 COPY . /opt/app
 
