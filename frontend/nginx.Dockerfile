@@ -12,6 +12,8 @@ ENV REACT_APP_BACKEND_BASE_URL=http://localhost:3800
 # Copy app
 COPY . /opt/app
 
+
+
 WORKDIR /opt/app
 
 # Npm install
@@ -22,4 +24,11 @@ RUN npm run build
 # Fase 2
 FROM nginx:1.22.1-alpine as runner
 
+RUN rm /etc/nginx/conf.d/default.conf
+
+COPY nginx.conf /etc/nginx/conf.d/
+
 COPY --from=compilacion /opt/app/build /usr/share/nginx/html
+
+EXPOSE 80
+
